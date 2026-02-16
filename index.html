@@ -167,7 +167,7 @@
         </blockquote>
         <p><strong>Суть процесса:</strong></p>
         <p>Если вы сидите без VPN, то ваш провайдер может спокойно читать куда вы заходите и анализировать ваш трафик. Когда мы включаем VPN, мы создаём отдельный зашифрованный «туннель», который провайдер не может прочитать. Запрос расшифровывается только на сервере и идет по назначению.</p>
-        <p style="color: var(--red);"><em>Важно: остерегайтесь сайтов, не поддерживающих HTTPS! Без него данные могут быть украдены даже при использовании VPN.</em></p>
+        <p style="color: var(--red);"><em>Важно: остерегайтесь сайтов, не поддерживающих HTTPS! Без него данные могут быть украдены даже при использовании VPN.</em></p><p>К счастью таких ресурсов осталось немного.</p>
     </div>
 
     <h2>Практическая настройка</h2>
@@ -217,23 +217,28 @@
         <li>Белые списки, подборка 150 лучших.</li>
         <li>Белые списки, подборка 150 лучших №2.</li>
         <li>Белые списки, большой список универсальных решений.</li>
-        <li>Белые списки для Beeline, Yandex, CDNVIDEO, VK.</li>
-        <li>Белые списки для обхода лёгких ограничений.</li>
+        <li>Белые списки, на Beeline, Yandex, CDNVIDEO, VK, тоже универсальное решение</li>
+        <li>Белые списки, для обхода лёгких ограничений.</li>
     </ol>
 
     <h3>3. Приложения:</h3>
     <ul>
-        <li><strong>iOS:</strong> <a href="https://apps.apple.com/us/app/streisand/id6450534064">Streisand</a>, <a href="https://apps.apple.com/us/app/karing/id6472431552">Karing</a></li>
-        <li><strong>Windows/MacOS:</strong> <a href="https://github.com/2dust/v2rayN/releases">v2rayN</a>, <a href="https://github.com/throneproj/Throne/releases">Throne</a>, <a href="https://github.com/KaringX/karing/releases">Karing</a></li>
-        <li><strong>Android:</strong> <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases">NekoBox</a>, <a href="https://github.com/2dust/v2rayNG/releases">v2rayNG</a></li>
+        <li>1. IOS - <a href="https://apps.apple.com/us/app/streisand/id6450534064"><code>Streisand</code></a>, <a href="https://apps.apple.com/us/app/karing/id6472431552"><code>Karing</code></a></li>
+        <li>2. Windows - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a>, <a href="https://github.com/Leadaxe/singbox-launcher/releases"><code>singbox-launcher</code></a></li>
+        <li>3. MacOS - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a>, <a href="https://github.com/Leadaxe/singbox-launcher/releases"><code>singbox-launcher</code></a></li>
+        <li>4. GNU/Linux - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a></li>
+        <li>5. Android - <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases"><code>NekoBox</code></a>, <a href="https://github.com/2dust/v2rayNG/releases"><code>v2rayNG</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a></li>
     </ul>
 
     <h3>4. Добавление подписок:</h3>
     <p>Приоритетнее всего использовать ссылки <strong>№4</strong> и <strong>№5</strong>.</p>
-    <div class="instruction-step"><code>Throne</code>: Приложение > Добавить профиль из буфера обмена > Создать новую группу подписки</div>
-    <div class="instruction-step"><code>Karing</code>: Добавить профиль > Импорт из буфера обмена > Выбрать сервер под кнопкой подключения</div>
-    <div class="instruction-step"><code>v2rayN</code>: Серверы > Импорт массива URL из буфера обмена > Группа подписки > Обновить без прокси</div>
-    <div class="instruction-step"><code>NekoBox</code>: Группы > Плюс (+) > Тип: Подписка > Вставить ссылку</div>
+    <div class="instruction-step"><code>Throne</code>: Приложение > Добавить профиль из буфера обмена > Создать новую группу подписки. Настройки > Основные настройки > Подписка > Включить интервал</div>
+    <div class="instruction-step"><code>Karing</code>: Добавить профиль > Импорт из буфера обмена > Примечание можно указать любое > Под кнопкой подключения выбираем какой нибудь сервер</div>
+    <div class="instruction-step"><code>v2rayN</code>: Серверы > Имопрт массива URL из буфера обмена > Переходим в подписку > Группа подписки > Обновить подписку без прокси</div>
+    <div class="instruction-step"><code>NekoBox</code>: Три полоски > Группы > Плюсик > Имя любое > Тип группы Подписка > Ссылка для подписки всятавляем ссылку > Автоматическое обновление > Задержка автоматического обновления 30</div>
+    <div class="instruction-step"><code>v2rayNG</code>: Три полоски > Группы > Плюсик > Названиие любое > URL вствляем ссылку</div>
+    <div class="instruction-step"><code>Streisand</code>: Плюсик > Добавить вручную > Тип Subscription > Название любое > URL вставляем ссылку > Автообновление 30 минут</div>
+    <div class="instruction-step"><code>singbox-launcher</code>: Скачиваем Sing-box > Скачиваем wintun.dll > Скачиваем Config template > Жмём Wizard > в Subscription URL вставляем ссылку > Жмём Next > Жмём Next > Жмём Save > Жмём Start > Идём во вкладку Server > Выбираем любой сервер</div>
 
     <h3>5. Глоссарий и тонкая настройка:</h3>
     <div class="theory-section">
