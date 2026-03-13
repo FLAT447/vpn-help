@@ -2,8 +2,9 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/refs/heads/main/icon.svg.svg">
-    <title>Инструкция по настройке VPN</title>
+    <title>Настройка VPN</title>
     <style>
         :root {
             --bg0: #282828;
@@ -36,9 +37,10 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             border: 1px solid var(--bg2);
         }
-        h1 { color: var(--fg0); border-bottom: 3px solid var(--blue); padding-bottom: 10px; }
+        h1 { color: var(--fg0); border-bottom: 3px solid var(--blue); padding-bottom: 10px; font-size: 1.8em; }
         h2 { color: var(--blue); margin-top: 30px; border-bottom: 1px solid var(--bg2); padding-bottom: 5px; }
-        h3 { color: var(--yellow); margin-top: 20px; }
+        h3 { color: var(--yellow); margin-top: 25px; }
+        h4 { color: var(--orange); margin-bottom: 10px; }
         
         .theory-section {
             background: var(--bg1);
@@ -48,45 +50,9 @@
             border-left: 4px solid var(--blue);
         }
 
-        .subscription-list { list-style: none; padding: 0; }
-        .subscription-item {
-            background: var(--bg1);
-            border: 1px solid var(--bg2);
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-        }
-        .link-text {
-            font-size: 0.9em;
-            color: var(--gray);
-            word-break: break-all;
-            flex-grow: 1;
-        }
-        .copy-btn {
-            background-color: var(--bg2);
-            color: var(--fg1);
-            border: 1px solid var(--gray);
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85em;
-            white-space: nowrap;
-            transition: all 0.2s;
-        }
-        .copy-btn:hover { 
-            background-color: var(--blue); 
-            color: var(--bg0);
-            border-color: var(--blue);
-        }
-        .copy-btn.success { 
-            background-color: var(--green); 
-            color: var(--bg0);
-            border-color: var(--green);
-        }
+        /* Список приложений и ссылок */
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
 
         code {
             background-color: var(--bg2);
@@ -95,6 +61,7 @@
             font-family: 'JetBrains Mono', monospace;
             color: var(--orange);
         }
+
         .instruction-step {
             background: var(--bg1);
             border-left: 4px solid var(--yellow);
@@ -102,6 +69,53 @@
             margin-bottom: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+
+        /* Стили для логики использования */
+        .usage-container {
+            display: grid;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .usage-step {
+            display: flex;
+            align-items: center;
+            background: var(--bg1);
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--bg2);
+        }
+        .step-badge {
+            background: var(--blue);
+            color: var(--bg0);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .alert-box {
+            background-color: rgba(251, 73, 52, 0.1);
+            border: 1px solid var(--red);
+            border-left: 5px solid var(--red);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            color: var(--fg1);
+        }
+
+        .term-box {
+            border-top: 1px dashed var(--bg2);
+            margin-top: 15px;
+            padding-top: 15px;
+        }
+
         blockquote {
             border-left: 4px solid var(--gray);
             margin: 10px 0;
@@ -111,15 +125,7 @@
         }
         a { color: var(--blue); text-decoration: none; }
         a:hover { color: var(--yellow); text-decoration: underline; }
-        
         strong { color: var(--fg0); }
-        ol li, ul li { margin-bottom: 8px; }
-
-        .term-box {
-            border-top: 1px dashed var(--bg2);
-            margin-top: 15px;
-            padding-top: 15px;
-        }
 
         .footer {
             text-align: center;
@@ -152,6 +158,14 @@
         .tg-color:hover { background: var(--blue); }
         .gh-color:hover { background: var(--purple); }
 
+        /* Адаптивность для мобилок */
+        @media (max-width: 600px) {
+            .container { padding: 20px 15px; }
+            h1 { font-size: 1.5em; }
+            .usage-step { align-items: flex-start; }
+            .alert-box { flex-direction: column; text-align: center; }
+            .alert-box span { margin-bottom: 10px; margin-right: 0; }
+        }
     </style>
 </head>
 <body>
@@ -163,55 +177,78 @@
         <h2>Как работает VPN</h2>
         
         <blockquote>
-            <strong>VPN (Virtual Private Network)</strong> — Виртуальная Приватная Сеть. По сути это отдельное зашифрованное соединение через который идёт весь ваш трафик и все ваши запросы.
+            <strong>VPN (Virtual Private Network)</strong> — Виртуальная Приватная Сеть. По сути это отдельное зашифрованное соединение, через которое идёт весь ваш трафик и все ваши запросы.
         </blockquote>
         <p><strong>Суть процесса:</strong></p>
         <p>Если вы сидите без VPN, то ваш провайдер может спокойно читать куда вы заходите и анализировать ваш трафик. Когда мы включаем VPN, мы создаём отдельный зашифрованный «туннель», который провайдер не может прочитать. Запрос расшифровывается только на сервере и идет по назначению.</p>
-        <p><em><red  style="color: var(--red);">Важно: остерегайтесь сайтов, не поддерживающих HTTPS! Без него данные могут быть украдены даже при использовании VPN.</red> К счастью таких ресурсов осталось немного.</em></p>
+        <p><span style="color: var(--red);">Важно: остерегайтесь сайтов, не поддерживающих HTTPS!</span> Без него данные могут быть украдены даже при использовании VPN. К счастью, таких ресурсов осталось немного.</p>
     </div>
 
     <h2>Практическая настройка</h2>
+    
     <h3>1. Списки подписок:</h3>
-    <p>Конфигцрации можно взять тут: <a href="https://hidashimora.github.io/free-vpn-anti-rkn/">free-vpn-anti-rkn</a>, <a href="https://github.com/igareck/vpn-configs-for-russia">vpn-configs-for-russia</a>, <a href="https://avencores.github.io/goida-vpn-site/">goida-vpn-site</a></p>
+    <p>Конфигурации можно взять тут: 
+        <a href="https://hidashimora.github.io/free-vpn-anti-rkn/">free-vpn-anti-rkn</a>, 
+        <a href="https://github.com/igareck/vpn-configs-for-russia">vpn-configs-for-russia</a>, 
+        <a href="https://avencores.github.io/goida-vpn-site/">goida-vpn-site</a>
+    </p>
 
     <h3>2. Приложения:</h3>
     <ul>
-        <li>1. IOS - <a href="https://apps.apple.com/us/app/streisand/id6450534064"><code>Streisand</code></a>, <a href="https://apps.apple.com/us/app/karing/id6472431552"><code>Karing</code></a></li>
-        <li>2. Windows - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a>, <a href="https://github.com/Leadaxe/singbox-launcher/releases"><code>singbox-launcher</code></a></li>
-        <li>3. MacOS - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a>, <a href="https://github.com/Leadaxe/singbox-launcher/releases"><code>singbox-launcher</code></a></li>
-        <li>4. GNU/Linux - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a></li>
-        <li>5. Android - <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases"><code>NekoBox</code></a>, <a href="https://github.com/2dust/v2rayNG/releases"><code>v2rayNG</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a></li>
+        <li><strong>IOS</strong> - <a href="https://apps.apple.com/us/app/streisand/id6450534064"><code>Streisand</code></a>, <a href="https://apps.apple.com/us/app/karing/id6472431552"><code>Karing</code></a></li>
+        <li><strong>Windows</strong> - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a>, <a href="https://github.com/Leadaxe/singbox-launcher/releases"><code>singbox-launcher</code></a></li>
+        <li><strong>MacOS</strong> - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a></li>
+        <li><strong>GNU/Linux</strong> - <a href="https://github.com/2dust/v2rayN/releases"><code>v2rayN</code></a>, <a href="https://github.com/throneproj/Throne/releases"><code>Throne</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a></li>
+        <li><strong>Android</strong> - <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases"><code>NekoBox</code></a>, <a href="https://github.com/2dust/v2rayNG/releases"><code>v2rayNG</code></a>, <a href="https://github.com/KaringX/karing/releases"><code>Karing</code></a></li>
     </ul>
 
     <h3>3. Добавление подписок:</h3>
-    <!-- <p><em><s>Приоритетнее всего использовать ссылки <strong>№4</strong> и <strong>№5</strong>.</s></em></p> -->
-    <!-- <p>РКН усилил блокировку протокола VLESS, временно рекомендуется использовать подписку <strong>№1</strong> и при включении БС <strong>№4</strong> или <strong>№5</strong></p> -->
     <div class="instruction-step"><code>Throne</code>: Приложение > Добавить профиль из буфера обмена > Создать новую группу подписки. Настройки > Основные настройки > Подписка > Включить интервал</div>
-    <div class="instruction-step"><code>Karing</code>: Добавить профиль > Импорт из буфера обмена > Примечание можно указать любое > Под кнопкой подключения выбираем какой нибудь сервер</div>
-    <div class="instruction-step"><code>v2rayN</code>: Серверы > Имопрт массива URL из буфера обмена > Переходим в подписку > Группа подписки > Обновить подписку без прокси</div>
-    <div class="instruction-step"><code>NekoBox</code>: Три полоски > Группы > Плюсик > Имя любое > Тип группы: Подписка > Ссылка для подписки всятавляем ссылку > Автоматическое обновление > Задержка автоматического обновления 30</div>
-    <div class="instruction-step"><code>v2rayNG</code>: Три полоски > Группы > Плюсик > Названиие любое > URL вствляем ссылку</div>
-    <div class="instruction-step"><code>Streisand</code>: Плюсик > Добавить вручную > Тип: Subscription > Название любое > URL вставляем ссылку > Автообновление 30 минут</div>
-    <div class="instruction-step"><code>singbox-launcher</code>: Скачиваем Sing-box > Скачиваем wintun.dll > Скачиваем Config template > Жмём Wizard > в Subscription URL вставляем ссылку > Жмём Next > Жмём Next > Жмём Save > Жмём Start > Идём во вкладку Server > Выбираем любой сервер</div>
+    <div class="instruction-step"><code>Karing</code>: Добавить профиль > Импорт из буфера обмена > Примечание любое > Выбираем сервер</div>
+    <div class="instruction-step"><code>v2rayN</code>: Серверы > Импорт массива URL > Группа подписки > Обновить подписку без прокси</div>
+    <div class="instruction-step"><code>NekoBox</code>: Группы > Плюсик > Имя любое > Тип: Подписка > Ссылка для подписки > Автообновление (30)</div>
+    <div class="instruction-step"><code>v2rayNG</code>: Три полоски > Группы > Плюсик > URL вставляем ссылку</div>
+    <div class="instruction-step"><code>Streisand</code>: Плюсик > Добавить вручную > Тип: Subscription > URL вставляем ссылку</div>
+    <div class="instruction-step"><code>singbox-launcher</code>: Wizard > Subscription URL > Save > Start > Server > Выбираем сервер</div>
 
-    <h3>4. Глоссарий и тонкая настройка:</h3>
-    <div class="theory-section">
-        <div class="term-box">
-            <strong>DoH (DNS over HTTPS) / DoT (DNS over TLS):</strong> Технологии шифрования DNS-запросов, предотвращающие слежку провайдера за тем, какие домены вы посещаете.
+    <h3>4. Использование и логика запуска</h3>
+    <div class="usage-container">
+        <div class="usage-step">
+            <div class="step-badge">1</div>
+            <div class="step-text">После добавления подписки запускаем <strong>URL Тест</strong> и сортируем список по задержке.</div>
         </div>
-        <div class="term-box">
-            <strong>Stack (TUN):</strong> Программная реализация сетевого интерфейса. <strong>gVisor</strong> — это современный стек от Google, обеспечивающий высокую стабильность и безопасность.
+        <div class="usage-step">
+            <div class="step-badge">2</div>
+            <div class="step-text">Перебираем конфиги с самой маленькой задержкой. <strong>Какой будет работать — тот и используем.</strong></div>
         </div>
-        <div class="term-box">
-            <strong>MTU (Maximum Transmission Unit):</strong> Максимальный размер пакета данных. Значение <strong>1500</strong> критически важно для корректной работы протокола Hysteria2.
+        <div class="usage-step">
+            <div class="step-badge">3</div>
+            <div class="step-text">Если не отвечает ни один конфиг — обновите подписку вручную.</div>
         </div>
     </div>
 
-    <div class="instruction-step">
+    <div class="alert-box">
+        <span style="font-size: 1.5em; margin-right: 15px;">⚠️</span>
+        <div>
+            <strong>Важное примечание:</strong> Для обновления подписки необходим нормально работающий Wi-Fi при включённых «Белых Списках».
+        </div>
+    </div>
+
+    <h3>5. Понятия и дополнительная настройка</h3>
+    <div class="theory-section">
+        <div class="term-box">
+            <strong>DoH (DNS over HTTPS) / DoT (DNS over TLS):</strong> Технологии шифрования DNS-запросов, предотвращающие слежку провайдера.
+        </div>
+        <div class="term-box">
+            <strong>Stack (TUN):</strong> Программная реализация сетевого интерфейса. Рекомендуется <strong>gVisor</strong> для стабильности.
+        </div>
+        <div class="term-box">
+            <strong>MTU:</strong> Максимальный размер пакета. Значение <strong>1500</strong> критично для работы Hysteria2.
+        </div>
+        <hr style="border: 0; border-top: 1px dashed var(--bg2); margin: 15px 0;">
         <p><strong>Рекомендуемые параметры:</strong></p>
         <ul>
             <li>Удаленный DNS: <code>https://1.1.1.1/dns-query</code></li>
-            <li>Прямой DNS: <code>1.1.1.1</code></li>
             <li>Stack (TUN): <code>gVisor</code></li>
             <li>MTU: <code>1500</code></li>
             <li>Автообновление: каждые 2 часа</li>
@@ -226,5 +263,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>
