@@ -244,14 +244,15 @@
             <strong>Stack (TUN):</strong> Программная реализация сетевого интерфейса. Рекомендуется <strong>gVisor</strong> для стабильности.
         </div>
         <div class="term-box">
-            <strong>MTU:</strong> Максимальный размер пакета. Значение <strong>1500</strong> критично для работы Hysteria2.
+            <strong>MTU:</strong> Размер пакета. Параметр критичен для протокола <strong>HYSTERIA2</strong>.
         </div>
         <hr style="border: 0; border-top: 1px dashed var(--bg2); margin: 15px 0;">
         <p><strong>Рекомендуемые параметры:</strong></p>
         <ul>
             <li>Удаленный DNS: <code>https://1.1.1.1/dns-query</code></li>
+            <li>DNS для прямых запросов: <code>223.5.5.5</code></li>
             <li>Stack (TUN): <code>gVisor</code></li>
-            <li>MTU: <code>1500</code></li>
+            <li>MTU: <code>1280</code></li>
             <li>Автообновление: каждые 2 часа</li>
         </ul>
     </div>
